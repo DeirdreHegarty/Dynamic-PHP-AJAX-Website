@@ -1,0 +1,350 @@
+<!DOCTYPE>
+<html>
+<head>
+	<title>Deirdre Hegarty</title>
+	<meta charset="UTF-8">
+	<!--  NOTE TO SELF: jQuery needs to be before Bootstrap -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	
+
+	<link rel="stylesheet" type="text/css" href="personal-website.css">
+	<script type="text/javascript" src="personal-website.js"></script>
+</head>
+<body id="body">
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<!-- <div class="navbar-header"> -->
+			<a class="navbar-brand" href="#">
+				<img id="logo" alt="DH" src="logo/DH2.png">
+			</a>
+			<!-- </div> -->
+
+			<div class="navbar-form navbar-right dropdown" style='margin-right:5%;' autocomplete="off">
+				<!-- <form> -->
+				<div class="form-group" data-toggle='dropdown'>
+					<input type="text" class="form-control" placeholder="Search" id='inbox' onkeyup='suggestImages()' style="width:300px;float:left" autocomplete="off">
+				</div>
+				
+				<button id="b1" type="submit" class="btn btn-default" style="height:50px;margin-top:10px;padding-left:20px; padding-right:20px">Submit</button><br/>
+				<div style='width:420px; padding-left:10px;'class='dropdown-menu'id='testdiv'>...<div>
+				<!-- </form> -->
+			</div>
+		</div>
+		<div id="imagediv"></div>
+	</nav>
+
+	<div id="container-one"class="container-fluid">
+		<div class="row">
+			<div class="col-md-6">
+				<p class="questions">WHO?</p>
+				<p class="questions">WHAT?</p>
+				<p class="questions">WHERE?</p>
+				<p class="questions">WHEN?</p>
+				<p class="questions">HOW?</p>
+			</div>
+			<div class="col-md-6">
+				<p id="whoAmI">Who needs labels? I am what I am. I am a creative, interested in all things beautiful.</p>
+			</div>
+		</div>
+	</div>
+	<div id='floating-squares' class="container-fluid">
+		<div class="row">
+			<div class='col-md-12 col-sm-12'>
+				
+				<div id="hid" class='hidden-xs' style='display:none;'>
+				
+					<!-- row 1 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 2 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 3 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 4 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 5 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+
+				<div id="orig" class='hidden-xs'>
+					<h1 id='squares-text' style='z-index:-10; position: absolute; margin-left:32.5%; margin-top: 100px;'>Labels are boring</h1>
+					<!-- row 1 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 2 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 3 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 4 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+					<!-- row 5 -->
+					<div class='row'>
+						<div class='small-squares-left'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+						<div class='small-squares-right'>
+							<div class='col-md-6 col-sm-6 remove-padding'>
+								<div class='small-squares'></div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="visible-xs text-center">
+					<div class='row'>
+						<div class='col-xs-12'>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-12'>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-12'>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-12'>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+						</div>
+					</div>
+					<div class='row'>
+						<div class='col-xs-12'>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+							<div class='small-squares'></div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- web dev -->
+	<div class="container-fluid" id="beepboop">
+		<div class="row">
+			<h3>BEEP-BOOP-BEEP</h3>
+			<div class="col-md-3 col-sm-6"><img class="boopImages" src="assets/logo.png"><p>Logos</p></div>
+			<div class="col-md-3 col-sm-6"><img class="boopImages" src="assets/website.png"><p>Websites</p></div>
+			<div class="col-md-3 col-sm-6"><img class="boopImages" src="assets/code.png"><p>Code Examples</p></div>
+			<div class="col-md-3 col-sm-6"><img class="boopImages" src="assets/tutorial.png"><p>Tutorials</p></div>
+		</div>
+	</div>
+	<!-- creative -->
+	<div class="container-fluid" id="ohshiny">
+		<div class="row">
+			<h3>OH SHINY</h3>
+			<div class="col-md-3"><img id="Painting" class="shinyimages" src="assets/painting.jpg"><p>painting</p></div>
+			<div class="col-md-3"><img id="Sculpture" class="shinyimages" src="assets/sculpture.jpg"><p>sculpture</p></div>
+			<div class="col-md-3"><img id="Photography" class="shinyimages" src="assets/photography.jpg"><p>photography</p></div>
+			<div class="col-md-3"><img id="Film" class="shinyimages" src="assets/film.jpg"><p>film</p></div>
+		</div>
+	<!-- TO BE APPENDED ON CLICK -->
+	<!-- drop down for gallery -->
+
+	<!-- along with this row the following needs to be appended to the div containing clicked image:
+
+			<div class="arrow-up"></div>
+
+		-->
+		
+
+	</div>
+	<!-- contact form -->
+	<div class="continer-fluid" id='container-three'>
+		<div class="row">
+			<div class="col-md-6 text-center">
+				<h3>Contact Me</h3>
+			</div>
+			<div class='col-md-6'>
+				<form id='contact-form'>
+					<div class='form-group'>
+						<input class='form-control' id='name' type='text' placeholder='name'>
+						<input class='form-control' id='email' type='email' placeholder='your email address'>
+						<textarea class='form-control' id='message' placeholder='message' style='height:150px;'></textarea>
+						<button class='form-control' id='send' type='submit'> Send </button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<div id='container-four' class="container-fluid">
+		<p>HELLO WORLD</p>
+	</div>
+
+</body>
+<script>
+
+</script>
+</html>

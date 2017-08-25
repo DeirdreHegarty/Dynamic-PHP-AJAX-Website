@@ -1,0 +1,163 @@
+//This is text bases searched suggestions
+function suggestImages(){
+	var jsonString = JSON.stringify({data: $('#inbox').val()});
+
+
+	$.ajax({
+		url: "http://localhost/personal-website/suggestImages.php",
+		type: "POST",
+		data: {data : jsonString},
+		success: function(data){
+			 $('#testdiv').html(data);
+		}
+	});
+}
+//this gets the images from the database
+function getImageSearched(elem){
+
+	var jsonString = JSON.stringify({data: $(elem).attr('id')});
+
+	$.ajax({
+			url: "http://localhost/personal-website/searchedImages.php",
+			type: "POST",
+    		data: {data : jsonString},
+    		success: function(data){
+				 $('#imagediv').html(data);
+			}
+		});
+}
+$(document).ready(function(){//ajax call - connection to database and retrieve images
+	$('#b1').on('click',function(){
+		var jsonString = JSON.stringify({data: $('#inbox').val()});
+		console.log(jsonString);
+
+		$.ajax({
+			url: "http://localhost/personal-website/imagetest.php",
+			type: "POST",
+    		data: {data : jsonString},
+    		success: function(data){
+				 $('#imagediv').html(data);
+			}
+		});
+	});
+
+$('#orig').show();
+
+var firstPlay = true;
+// event listener for when scroll
+$( window ).scroll(function() {
+
+	var height = $(window).scrollTop(); // get current vertical position
+
+	// on scroll 250px swap the classes (to trigger css animation - based on classes)
+	if(height > 250 & firstPlay){ 
+		
+		// move left & right
+		$('#squares-text').fadeOut();
+		$('.small-squares-left').addClass('small-squares-left-1');
+		$('div').removeClass('small-squares-left');
+		$('.small-squares-right').addClass('small-squares-right-1');
+		$('div').removeClass('small-squares-right');
+		firstPlay = false;
+
+		//rotate squares
+		$('.small-squares').addClass('small-squares-rotate');
+	}
+
+	// if the class has been added for the animation trigger wait 5 seconds for the animation 
+	// to play and then make a square shape
+	if($('div').hasClass('small-squares-right-1')){
+		setTimeout(function(){ 
+			$('.small-squares-left-1').addClass('small-squares-right');
+			$('div').removeClass('small-squares-left-1');
+			$('.small-squares-right-1').addClass('small-squares-left');
+			$('div').removeClass('small-squares-right-1');
+			$('#hid').show();
+			$('#orig').hide();
+		}, 3000);	
+
+	}
+
+});
+
+// check if form is completed (NEEDS TO BE SANITISED LATER!!)
+var submissions = 0;
+$('#send').on('click',function(){
+	submissions++;
+	var completed = true;
+	$('#contact-form').find('input, textarea, select').each(function(){
+		if(!$(this).val()){
+			completed = false;
+		}
+	});
+	if (!completed & submissions <= 1){
+		$('#contact-form').prepend("<p style='color:white'>hello... please complete the form before submitting</p>");
+		$('#send').css('background','red');
+		return false;	
+	}
+	else if (!completed){
+		return false;
+	}
+});
+
+//Dropdowns for category gallerys on homepage
+var hasTriangle = false;
+var clickThing = '';
+function showPreview(elem){
+
+	var jsonString = JSON.stringify({data: $(elem).attr('id')});
+	console.log(jsonString);
+		$.ajax({
+			url: "http://localhost/personal-website/dropdownimages.php",
+			type: "POST",
+    		data: {data : jsonString},
+    		success: function(data){
+
+    			appendTop= '<div class="arrow-up" style="display:none;"></div>';
+				appendBody= '<div class="row" id="previewrow"><div class="col-md-6"><div class="row">' + data + '</div></div><button class="col-md-offset-1 col-md-4 col-xs-offset-4 col-xs-4" id="viewmore" onclick="navToGallery(this);">view more</button></div>';
+
+				elem.closest('.container-fluid').append(appendBody);
+				elem.closest('div').append(appendTop);
+				$('#previewrow').css('display','none');
+				$('#previewrow').slideDown();
+				$('.arrow-up').fadeIn();
+				hasTriangle = true;
+
+			}
+		});
+
+}
+
+
+// if image is clicked, append a preview of 6 related images to the row
+$('.shinyimages').on('click',function(){
+	
+	console.log($(this).attr('id'));
+
+	// if no triangle present and the last thing is clicked again
+	if (!hasTriangle && clickThing == $(this).attr('id')) {
+		clickThing = '';
+	}
+	//if there is a triangle present in DOM
+	if(hasTriangle){
+		hasTriangle = false;
+		$('.arrow-up').fadeOut(function(){$(this).remove();});
+		$('#previewrow').slideUp(function(){$(this).remove();});
+	}
+	//if image clicked is not the last thing clicked
+	if(clickThing != $(this).attr('id')){
+		clickThing = $(this).attr('id');
+		// console.log('passing to function');
+		showPreview($(this));
+
+		hasTriangle=true;
+	}
+	
+});
+});
+
+//when view more button clicked in dropdown
+function navToGallery(galleryItem){
+
+	window.location.href = './viewImages.html';
+}
