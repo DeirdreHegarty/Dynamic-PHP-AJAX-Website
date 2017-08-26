@@ -16,7 +16,11 @@ function suggestImages(){
 function getImageSearched(elem){
 
 	var jsonString = JSON.stringify({data: $(elem).attr('id')});
+	$('#hiddeninput').val(jsonString);
+	// doucument.getElementById('hiddenform').submit();
 
+
+	/*
 	$.ajax({
 			url: "http://localhost/personal-website/searchedImages.php",
 			type: "POST",
@@ -24,13 +28,18 @@ function getImageSearched(elem){
     		success: function(data){
 				 $('#imagediv').html(data);
 			}
-		});
+		});*/
 }
 $(document).ready(function(){//ajax call - connection to database and retrieve images
+
+	//when search button is clicked - navigate and retrieve images related
 	$('#b1').on('click',function(){
 		var jsonString = JSON.stringify({data: $('#inbox').val()});
-		console.log(jsonString);
+		$('#hiddeninput').val(jsonString);
+		doucument.getElementById('hiddenform').submit();
 
+		// alert(jsonString);
+		/*
 		$.ajax({
 			url: "http://localhost/personal-website/imagetest.php",
 			type: "POST",
@@ -38,7 +47,7 @@ $(document).ready(function(){//ajax call - connection to database and retrieve i
     		success: function(data){
 				 $('#imagediv').html(data);
 			}
-		});
+		});*/
 	});
 
 $('#orig').show();
