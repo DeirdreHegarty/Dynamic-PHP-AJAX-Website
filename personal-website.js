@@ -156,6 +156,12 @@ $('.shinyimages').on('click',function(){
 });
 });
 
+//bug present here when click an image -> off image -> back on SAME image: NEED TO FIX THIS
+$(window).on('click', function(){
+	$('.arrow-up').fadeOut(function(){$(this).remove();});
+	$('#previewrow').slideUp(function(){$(this).remove();});
+});
+
 //when view more button clicked in dropdown
 function navToGallery(galleryItem){
 
