@@ -17,7 +17,7 @@ function getImageSearched(elem){
 
 	var jsonString = JSON.stringify({data: $(elem).attr('id')});
 	$('#hiddeninput').val(jsonString);
-	// doucument.getElementById('hiddenform').submit();
+
 
 
 	/*
@@ -36,7 +36,7 @@ $(document).ready(function(){//ajax call - connection to database and retrieve i
 	$('#b1').on('click',function(){
 		var jsonString = JSON.stringify({data: $('#inbox').val()});
 		$('#hiddeninput').val(jsonString);
-		doucument.getElementById('hiddenform').submit();
+
 
 		// alert(jsonString);
 		/*
@@ -105,6 +105,27 @@ $('#send').on('click',function(){
 		return false;	
 	}
 	else if (!completed){
+		return false;
+	}else{
+		
+		//make the ajax call & send the email
+		var emailArray = [];
+		emailArray.push($('#name').val());
+		emailArray.push($('#email').val());
+		emailArray.push($('#message').val());
+		var jsonString = JSON.stringify(emailArray);
+		console.log(jsonString);
+
+		$.ajax({
+			url: "send-email.php",
+			type: "POST",
+			data: {data : jsonString},
+			success: function(data){
+				console.log(data);
+				 // $('#testdiv').html(data);
+			}
+		});
+		console.log("after ajax");
 		return false;
 	}
 });
