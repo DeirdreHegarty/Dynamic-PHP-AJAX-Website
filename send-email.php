@@ -3,7 +3,7 @@
 	$q = json_decode($_POST['data']);
 
 
-	$to = "deeadoora@gmail.com";
+	$to = "test@test.com";
 	$subject = $q[0];
 	$message = $q[2];
 	$headers = 'From: '. $q[1] . "\r\n" .
