@@ -62,6 +62,7 @@ $dbname = "personal-website";
 	$toSearch = strtolower($toSearch);			//all to lowercase
 	$toSearch = ucfirst($toSearch);				//first letter uppercase
 
+	if(is_numeric($toSearch)){
 	
 	$sql = "SELECT * FROM webimages WHERE id = $toSearch";
 	$temp ='';
@@ -76,10 +77,12 @@ $dbname = "personal-website";
 
 			 echo "<div class='col-md-6'><img class='col-md-offset-2 col-md-10 mainImage' src='".$row["address"]."'></div>";
 			 $temp = $row["genre"];
+			 echo "<div class='col-md-6'>";
 			 echo "<h3>".$row["name"]."</h3>";
 			 echo "<p>PROJECT: ".$row["project"]."</p>";
 			 echo "<p>CATEGORY: ".$row["genre"]."</p>";
 			 echo "<p>".$row["description"]."</p>";
+			 echo "</div>";
 			 echo '</div>'; //end of row
 
 	     }
@@ -97,9 +100,42 @@ $dbname = "personal-website";
 	     // output data of each row
 		echo "<div id='previewImageContainer' class='row'>";
 	     while($row = $result->fetch_assoc()) {
-			 echo "<img class='galleryimages' src='".$row["address"]."'>";
+			 echo "<img class='galleryimages' src='".$row["thumbs"]."'>";
 	     }
 	     echo "</div>";
 	 }
-	 echo '</div></div></body>'
+	 echo '</div></div></body>';
+	}else{
+
+
+	$sql = "SELECT * FROM webimages WHERE name LIKE '%$toSearch%'";
+	$temp ='';
+	$result = $conn->query($sql);
+
+
+	//while there are rows in the database table
+	if ($result->num_rows > 0) {
+	     // output data of each row
+
+	     while($row = $result->fetch_assoc()) {
+		     echo "<div class='row'><div class='col-md-12'>";
+			 echo "<div class='col-md-6'><img class='col-md-offset-2 col-md-10 mainImage' src='".$row["address"]."'></div>";
+			 echo "<div class='col-md-6'>";
+			 echo "<h3>".$row["name"]."</h3>";
+			 echo "<p>PROJECT: ".$row["project"]."</p>";
+			 echo "<p>CATEGORY: ".$row["genre"]."</p>";
+			 echo "<p>".$row["description"]."</p>";
+			 echo '</div>';
+			 echo '</div></div>';
+
+
+	     }
+	} 
+
+	 echo '</div></div></body>';
+
+	}
 ?>
+
+
+

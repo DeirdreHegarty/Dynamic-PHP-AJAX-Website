@@ -37,8 +37,9 @@ $(document).ready(function(){//ajax call - connection to database and retrieve i
 		var jsonString = JSON.stringify({data: $('#inbox').val()});
 		$('#hiddeninput').val(jsonString);
 
+		
+		//alert(jsonString);
 
-		// alert(jsonString);
 		/*
 		$.ajax({
 			url: "http://localhost/personal-website/imagetest.php",
@@ -142,7 +143,6 @@ function showPreview(elem){
 			type: "POST",
     		data: {data : jsonString},
     		success: function(data){
-
     			appendTop= '<div class="arrow-up" style="display:none;"></div>';
 				appendBody= '<div class="row" id="previewrow"><div class="col-md-6"><div class="row">' + data + '</div></div><button class="col-md-offset-1 col-md-4 col-xs-offset-4 col-xs-4" id="viewmore" onclick="navToGallery(this);">view more</button></div>';
 
@@ -161,7 +161,6 @@ function showPreview(elem){
 
 // if image is clicked, append a preview of 6 related images to the row
 $('.shinyimages').on('click',function(){
-	
 	console.log($(this).attr('id'));
 
 	// if no triangle present and the last thing is clicked again
