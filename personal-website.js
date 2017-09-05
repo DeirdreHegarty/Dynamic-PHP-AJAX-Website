@@ -14,12 +14,10 @@ function suggestImages(){
 }
 //this gets the images from the database
 function getImageSearched(elem){
-
-	var jsonString = JSON.stringify({data: $(elem).attr('id')});
+	var sometext = $(elem).text();
+	var jsonString = JSON.stringify({data: sometext});
 	$('#hiddeninput').val(jsonString);
-
-
-
+	
 	/*
 	$.ajax({
 			url: "http://localhost/personal-website/searchedImages.php",
@@ -36,7 +34,6 @@ $(document).ready(function(){//ajax call - connection to database and retrieve i
 	$('#b1').on('click',function(){
 		var jsonString = JSON.stringify({data: $('#inbox').val()});
 		$('#hiddeninput').val(jsonString);
-
 		
 		//alert(jsonString);
 

@@ -98,7 +98,7 @@ $dbname = "personal-website";
 	//while there are rows in the database table
 	if ($result->num_rows > 0) {
 	     // output data of each row
-		echo "<div id='previewImageContainer' class='row'>";
+		echo "<div id='previewImageContainer' style='height:350px;overflow:auto'class='row'>";
 	     while($row = $result->fetch_assoc()) {
 			 echo "<img class='galleryimages' src='".$row["thumbs"]."'>";
 	     }

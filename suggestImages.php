@@ -36,7 +36,7 @@ $dbname = "personal-website";
 	     // output data of each row
 	     while($row = $result->fetch_assoc()) {
 
-			 echo "<p id='".$row['id']."'style='text-align:left; padding-left:10px;padding-right:1;cursor:pointer' onclick='getImageSearched(this)'>".$row["name"]."</p>";
+			 echo "<p type='submit' form='hiddenform' id='".$row['id']."'style='text-align:left; padding-left:10px;padding-right:1;cursor:pointer' onclick='getImageSearched(this)'>".$row["name"]."</p>";
 			 	
 	     }
 	} 
