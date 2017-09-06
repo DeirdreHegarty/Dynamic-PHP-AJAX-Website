@@ -18,12 +18,13 @@ echo '<!DOCTYPE>
 	
 
 	<link rel="stylesheet" type="text/css" href="personal-website.css">
+	<script type="text/javascript" src="personal-website.js"></script>
 </head>
 <body id="body">
-<nav class="navbar navbar-default">
+	<nav class="navbar navbar-default">
 		<div class="container-fluid">
 			<!-- <div class="navbar-header"> -->
-			<a class="navbar-brand" href="#">
+			<a class="navbar-brand" href="Personal-Website.html">
 				<img id="logo" alt="DH" src="logo/DH2.png">
 			</a>
 			<!-- </div> -->
@@ -34,16 +35,20 @@ echo '<!DOCTYPE>
 					<input type="text" class="form-control" placeholder="Search" id="inbox" onkeyup="suggestImages()" style="width:300px;float:left" autocomplete="off">
 				</div>
 				
-				<button id="b1" type="submit" class="btn btn-default" style="height:50px;margin-top:10px;padding-left:20px; padding-right:20px">Submit</button><br/>
+				<button id="b1" type="submit" form="hiddenform" class="btn btn-default" style="height:50px;margin-top:10px;padding-left:20px; padding-right:20px">Submit</button><br/>
 				<div style="width:420px; padding-left:10px;"class="dropdown-menu"id="testdiv">...<div>
 				<!-- </form> -->
 				
 			</div>
 		</div>
+		<div id="imagediv"></div>
+		<form style="display:none;" id="hiddenform" name="hiddenform" action="viewgallery.php" method="post">
+			<input id="hiddeninput" name="hiddeninput">
+		</form>
 	</nav>
 
-<div class="container-fluid">
-	<div id="firstrow" class="row">';
+	<div id="container-one"class="container-fluid">
+		<div class="row">';
 
 
 $servername = "localhost";
@@ -61,78 +66,95 @@ $dbname = "personal-website";
 	$toSearch = $q -> {'data'}; 				//extract the string 
 	$toSearch = strtolower($toSearch);			//all to lowercase
 	$toSearch = ucfirst($toSearch);				//first letter uppercase
-
-	if(is_numeric($toSearch)){
-	
-	$sql = "SELECT * FROM webimages WHERE id = $toSearch";
 	$temp ='';
-	$result = $conn->query($sql);
+	if(is_numeric($toSearch)){
+
+		$sql = "SELECT * FROM webimages WHERE id = $toSearch";
+		$temp ='';
+		$result = $conn->query($sql);
 
 
-	//while there are rows in the database table
-	if ($result->num_rows > 0) {
-	     // output data of each row
+		//while there are rows in the database table
+		if ($result->num_rows > 0) {
+		     // output data of each row
 
-	     while($row = $result->fetch_assoc()) {
+		     while($row = $result->fetch_assoc()) {
 
-			 echo "<div class='col-md-6'><img class='col-md-offset-2 col-md-10 mainImage' src='".$row["address"]."'></div>";
-			 $temp = $row["genre"];
-			 echo "<div class='col-md-6'>";
-			 echo "<h3>".$row["name"]."</h3>";
-			 echo "<p>PROJECT: ".$row["project"]."</p>";
-			 echo "<p>CATEGORY: ".$row["genre"]."</p>";
-			 echo "<p>".$row["description"]."</p>";
-			 echo "</div>";
-			 echo '</div>'; //end of row
+				 echo "<div class='col-md-6'><img class='col-md-offset-2 col-md-10 mainImage' src='".$row["address"]."'></div>";
+				 $temp = $row["genre"];
+				 echo "<div class='col-md-6'>";
+				 echo "<h3>".$row["name"]."</h3>";
+				 echo "<p>PROJECT: ".$row["project"]."</p>";
+				 echo "<p>CATEGORY: ".$row["genre"]."</p>";
+				 echo "<p>".$row["description"]."</p>";
+				 echo "</div>";
+				 echo '</div>'; //end of row
 
-	     }
-	} 
+		     }
+		} 
 
-	//now that have info about searched image
-	//not that have the image searched, get all relating to same genre
+		//now that have info about searched image
+		//not that have the image searched, get all relating to same genre
 
-	$sql = "SELECT * FROM webimages WHERE genre = '$temp' AND id != $toSearch";
-	$result = $conn->query($sql);
-	// echo $sql;
-	
-	//while there are rows in the database table
-	if ($result->num_rows > 0) {
-	     // output data of each row
-		echo "<div id='previewImageContainer' style='height:350px;overflow:auto'class='row'>";
-	     while($row = $result->fetch_assoc()) {
-			 echo "<img class='galleryimages' src='".$row["thumbs"]."'>";
-	     }
-	     echo "</div>";
-	 }
-	 echo '</div></div></body>';
+		$sql = "SELECT * FROM webimages WHERE genre = '$temp' AND id != $toSearch";
+		$result = $conn->query($sql);
+		// echo $sql;
+		
+		//while there are rows in the database table
+		if ($result->num_rows > 0) {
+		     // output data of each row
+			echo "<div id='previewImageContainer' style='height:350px;overflow:auto'class='row'>";
+		     while($row = $result->fetch_assoc()) {
+				 echo "<img class='galleryimages' src='".$row["address"]."'>";
+		     }
+		     echo "</div>";
+		 }
+		 echo '</div></div></body>';
 	}else{
 
 
-	$sql = "SELECT * FROM webimages WHERE name LIKE '%$toSearch%'";
-	$temp ='';
-	$result = $conn->query($sql);
+		$sql = "SELECT * FROM webimages WHERE name LIKE '%$toSearch%'";
+
+		$result = $conn->query($sql);
 
 
-	//while there are rows in the database table
-	if ($result->num_rows > 0) {
-	     // output data of each row
+		//while there are rows in the database table
+		if ($result->num_rows > 0) {
+		     // output data of each row
 
-	     while($row = $result->fetch_assoc()) {
-		     echo "<div class='row'><div class='col-md-12'>";
-			 echo "<div class='col-md-6'><img class='col-md-offset-2 col-md-10 mainImage' src='".$row["address"]."'></div>";
-			 echo "<div class='col-md-6'>";
-			 echo "<h3>".$row["name"]."</h3>";
-			 echo "<p>PROJECT: ".$row["project"]."</p>";
-			 echo "<p>CATEGORY: ".$row["genre"]."</p>";
-			 echo "<p>".$row["description"]."</p>";
-			 echo '</div>';
-			 echo '</div></div>';
+		     while($row = $result->fetch_assoc()) {
+		     	 $temp = $row["genre"];
+			     echo "<div class='row'><div class='col-md-12'>";
+				 echo "<div class='col-md-6'><img class='col-md-offset-2 col-md-10 mainImage' src='".$row["address"]."'></div>";
+				 echo "<div class='col-md-6'>";
+				 echo "<h3>".$row["name"]."</h3>";
+				 echo "<p>PROJECT: ".$row["project"]."</p>";
+				 echo "<p>CATEGORY: ".$row["genre"]."</p>";
+				 echo "<p>".$row["description"]."</p>";
+				 echo '</div>';
+				 echo '</div></div>';
 
 
-	     }
-	} 
+		     }
+		} 
 
-	 echo '</div></div></body>';
+	//now that have info about searched image
+		//not that have the image searched, get all relating to same genre
+
+		$sql = "SELECT * FROM webimages WHERE genre = '$temp'";
+		$result = $conn->query($sql);
+		// echo $sql;
+		
+		//while there are rows in the database table
+		if ($result->num_rows > 0) {
+		     // output data of each row
+			echo "<div id='previewImageContainer' style='height:350px;overflow:auto'class='row'>";
+		     while($row = $result->fetch_assoc()) {
+				 echo "<img class='galleryimages' src='".$row["address"]."'>";
+		     }
+		     echo "</div>";
+		 }
+		 echo '</div></div></body>';
 
 	}
 ?>
