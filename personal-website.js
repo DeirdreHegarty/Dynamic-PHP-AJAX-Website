@@ -1,10 +1,12 @@
-//This is text bases searched suggestions
+// ******* TEXT-BASED SEARCH SUGGESTIONS ***********//
+// This makes an ajax call to suggestImages.php & returns
+// text to the drop-down under the search bar
 function suggestImages(){
 	var jsonString = JSON.stringify({data: $('#inbox').val()});
 
 
 	$.ajax({
-		url: "http://localhost/personal-website/suggestImages.php",
+		url: "suggestImages.php",
 		type: "POST",
 		data: {data : jsonString},
 		success: function(data){
@@ -12,15 +14,18 @@ function suggestImages(){
 		}
 	});
 }
-//this gets the images from the database
+
+// THIS FILLS THE TEXT FROM THE CHOSEN DROP-DOWN SUGGESTIONS
+// & fills it into the hidden from input to then be submitted
 function getImageSearched(elem){
 	var sometext = $(elem).text();
 	var jsonString = JSON.stringify({data: sometext});
+	$('#inbox').val(sometext);
 	$('#hiddeninput').val(jsonString);
 	
 	/*
 	$.ajax({
-			url: "http://localhost/personal-website/searchedImages.php",
+			url: "searchedImages.php",
 			type: "POST",
     		data: {data : jsonString},
     		success: function(data){
@@ -39,7 +44,7 @@ $(document).ready(function(){//ajax call - connection to database and retrieve i
 
 		/*
 		$.ajax({
-			url: "http://localhost/personal-website/imagetest.php",
+			url: "imagetest.php",
 			type: "POST",
     		data: {data : jsonString},
     		success: function(data){
@@ -136,7 +141,7 @@ function showPreview(elem){
 	var jsonString = JSON.stringify({data: $(elem).attr('id')});
 	console.log(jsonString);
 		$.ajax({
-			url: "http://localhost/personal-website/dropdownimages.php",
+			url: "dropdownimages.php",
 			type: "POST",
     		data: {data : jsonString},
     		success: function(data){

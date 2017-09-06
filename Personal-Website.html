@@ -34,14 +34,14 @@
 					<input type="text" class="form-control" placeholder="Search" id='inbox' onkeyup='suggestImages()' style="width:300px;float:left" autocomplete="off">
 				</div>
 				
-				<button id="b1" type="submit" class="btn btn-default" style="height:50px;margin-top:10px;padding-left:20px; padding-right:20px">Submit</button><br/>
+				<button id="b1" type="submit" form="hiddenform" class="btn btn-default" style="height:50px;margin-top:10px;padding-left:20px; padding-right:20px">Submit</button><br/>
 				<div style='width:420px; padding-left:10px;'class='dropdown-menu'id='testdiv'>...<div>
 				<!-- </form> -->
 				
 			</div>
 		</div>
 		<div id="imagediv"></div>
-		<form id='hiddenform' name='hiddenform' action='viewgallery.php' method='post'>
+		<form style="display:none;" id='hiddenform' name='hiddenform' action='viewgallery.php' method='post'>
 			<input id='hiddeninput' name='hiddeninput'>
 		</form>
 	</nav>

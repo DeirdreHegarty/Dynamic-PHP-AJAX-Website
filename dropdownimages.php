@@ -30,7 +30,6 @@ $dbname = "personal-website";
 
 			 echo '<div class="col-md-4 col-sm-4">
 						<img class="previewimages" src="' .$row['thumbs']. '">
-						<h1>hello</h1>
 					</div>';
 			 	
 	     }
